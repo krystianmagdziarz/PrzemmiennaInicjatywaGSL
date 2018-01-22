@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+<form>
+<grammar type="application/x-nuance-gsl">
+<![CDATA[
+Request
+(
+	?[ 
+	(victim) 
+	(the victim) 
+	(the victim is)
+	(he is)
+	(she is)
+	(he)
+	(she)
+	]
+	State
+	?and ?State
+	?and ?State
+	?please
+)
+State
+(
+	?the
+	[
+	not walk { <walk 'no walking'> }
+	not walking { <walk 'no walking'> }
+	not breath { <breath 'no breathing'> }
+	not breathing { <breath 'no breathing'> }
+	not blood { <blood 'no blooding'> }
+	not blooding { <blood 'no blooding'> }
+	walk { <walk 'walking'> }
+	walking { <walk 'walking'> }
+	breath { <breath 'breathing'> }
+	breathing { <breath 'breathing'> }
+	blood { <blood 'blooding'> }
+	blooding { <blood 'blooding'> }
+	]
+) ]]>
+</grammar>
+
+<initial>
+<prompt>
+	What is the victim condition ?
+</prompt>
+</initial>
+
+  <field name="walk">
+	<!-- Dodatkowa gramatyka w celu odpowiedzi na pytanie dodatkowe -->
+	<!-- Odpowiedz Yes/No jest niejednoznaczna dla konkretnych pytan --> 
+	<grammar>
+		<rule>
+			<one-of>
+	      		<item>Yes</item>
+	      		<item>No</item>
+			</one-of>
+		</rule>
+	</grammar>
+	<prompt>
+		Is the victim walking ?
+	</prompt>
+	<nomatch count="1">
+		<reprompt/>
+	</nomatch>
+	<nomatch count="2">
+		<reprompt/>
+	</nomatch>
+	<nomatch count="3">
+		<prompt>Can't match a state.</prompt>
+		<exit/>
+	</nomatch>
+	<noinput count="1">
+		<reprompt/>
+	</noinput>
+	<noinput count="2">
+		<reprompt/>
+	</noinput>
+	<noinput count="3">
+		<prompt>No input for a walking.</prompt>
+		<exit/>
+	</noinput>
+	<filled>
+		<if cond="walk == 'Yes'"><assign name="walk" expr="'walking'"/></if>
+		<if cond="walk == 'No'"><assign name="walk" expr="'no walking'"/></if>
+	</filled>
+  </field>
+
+  <field name="breath">
+	<grammar>
+		<rule>
+			<one-of>
+	      		<item>Yes</item>
+	      		<item>No</item>
+			</one-of>
+		</rule>
+	</grammar>
+	<prompt>
+		Is the victim breathing ?
+	</prompt>
+	<nomatch count="1">
+		<reprompt/>
+	</nomatch>
+	<nomatch count="2">
+		<reprompt/>
+	</nomatch>
+	<nomatch count="3">
+		<prompt>Can't match a state.</prompt>
+		<exit/>
+	</nomatch>
+	<noinput count="1">
+		<reprompt/>
+	</noinput>
+	<noinput count="2">
+		<reprompt/>
+	</noinput>
+	<noinput count="3">
+		<prompt>No input for a breathing.</prompt>
+		<exit/>
+	</noinput>
+	<filled>
+		<if cond="breath == 'Yes'"><assign name="breath" expr="'breathing'"/></if>
+		<if cond="breath == 'No'"><assign name="breath" expr="'no breathing'"/></if>
+	</filled>
+  </field>
+
+  <field name="blood">
+	<grammar>
+		<rule>
+			<one-of>
+	      		<item>Yes</item>
+	      		<item>No</item>
+			</one-of>
+		</rule>
+	</grammar>
+	<prompt>
+		Is the victim blooding ?
+	</prompt>
+	<nomatch count="1">
+		<reprompt/>
+	</nomatch>
+	<nomatch count="2">
+		<reprompt/>
+	</nomatch>
+	<nomatch count="3">
+		<prompt>Can't match a state.</prompt>
+		<exit/>
+	</nomatch>
+	<noinput count="1">
+		<reprompt/>
+	</noinput>
+	<noinput count="2">
+		<reprompt/>
+	</noinput>
+	<noinput count="3">
+		<prompt>No input for a blooding.</prompt>
+		<exit/>
+	</noinput>
+	<filled>
+		<if cond="blood == 'Yes'"><assign name="blood" expr="'blooding'"/></if>
+		<if cond="blood == 'No'"><assign name="blood" expr="'no blooding'"/></if>
+	</filled>
+  </field>
+
+<filled mode="all">
+	You said that the victim is <value expr="walk"/>, <value expr="breath"/> , <value expr="blood"/>
+<clear/>
+</filled>
+</form>
+</vxml>
