@@ -23,12 +23,12 @@ State
 (
 	?the
 	[
-	not walk { <walk 'no walking'> }
-	not walking { <walk 'no walking'> }
-	not breath { <breath 'no breathing'> }
-	not breathing { <breath 'no breathing'> }
-	not blood { <blood 'no blooding'> }
-	not blooding { <blood 'no blooding'> }
+	not walk { <walk 'not walking'> }
+	not walking { <walk 'not walking'> }
+	not breath { <breath 'not breathing'> }
+	not breathing { <breath 'not breathing'> }
+	not blood { <blood 'not blooding'> }
+	not blooding { <blood 'not blooding'> }
 	walk { <walk 'walking'> }
 	walking { <walk 'walking'> }
 	breath { <breath 'breathing'> }
@@ -81,7 +81,7 @@ State
 	</noinput>
 	<filled>
 		<if cond="walk == 'Yes'"><assign name="walk" expr="'walking'"/></if>
-		<if cond="walk == 'No'"><assign name="walk" expr="'no walking'"/></if>
+		<if cond="walk == 'No'"><assign name="walk" expr="'not walking'"/></if>
 	</filled>
   </field>
 
@@ -119,7 +119,7 @@ State
 	</noinput>
 	<filled>
 		<if cond="breath == 'Yes'"><assign name="breath" expr="'breathing'"/></if>
-		<if cond="breath == 'No'"><assign name="breath" expr="'no breathing'"/></if>
+		<if cond="breath == 'No'"><assign name="breath" expr="'not breathing'"/></if>
 	</filled>
   </field>
 
@@ -157,7 +157,7 @@ State
 	</noinput>
 	<filled>
 		<if cond="blood == 'Yes'"><assign name="blood" expr="'blooding'"/></if>
-		<if cond="blood == 'No'"><assign name="blood" expr="'no blooding'"/></if>
+		<if cond="blood == 'No'"><assign name="blood" expr="'not blooding'"/></if>
 	</filled>
   </field>
 
